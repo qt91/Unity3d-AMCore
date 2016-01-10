@@ -5,7 +5,7 @@ using System;
 [Serializable]
 public class Settings
 {
-    public string productName = "AltamediaUnityLib";
+    public string productName = "AMBuocNhayHoanVuNhi";
 
     //Socket Client
     public string SocketIP = "127.0.0.1";
@@ -18,19 +18,21 @@ public class Settings
     public float WindowsReadTimeLoop = 1f;//Time loop reload setting file
     public int WindowsPositionX = -5;//Postion X Left to Right
     public int WindowsPositionY = -25;//Postion Y Top to Down
-    public int WindowsScaleX = 1;//Scale show window
-    public int WindowsScaleY = 1;//Scale show window
+
+    //For panel Main UI => Scale
+    public int PanelContentScaleX = 1;//Scale show window
+    public int PanelContentScaleY = 1;//Scale show window
+    public int PanelContentScaleZ = 1;//Scale show window
+    // For panel content => Size
+    public float PanelContentWith = 1280;//width
+    public float PanelContentHeight = 200;//height
 
     //Registry for this Project
-    public int NumberPlay = 0;// Number of times play
-    public float TimeEachFrame = 0.3f;//Time each frame 
-    public int TimeCountDownMain = 3;
-    public int TimeCountDownNext = 2;
-    //F1
-    public float DistanceStartGame = 4f;
-    public float DistanceTimeCount = 1;
+    public string UrlVideoYes = "Videos/Demo1.mov";//Link video dong y
+    public string UrlVideoNo = "Videos/Demo2.mov";//Link video khong dong y
+    public string UrlVideoLogo = "Videos/Demo4.mov";//Link video default
 
-    public float MouseTimeHoverClick = 3;
+
 
     public void Load()
     {

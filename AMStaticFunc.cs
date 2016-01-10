@@ -91,4 +91,18 @@ public static class AMStaticFunc {
         }
        
     }
+
+
+    //SerialPort
+    public static string guessPortNameWindows()
+    {
+        var devices = System.IO.Ports.SerialPort.GetPortNames();
+
+        if (devices.Length == 0) // 
+        {
+            return "COM3"; // probably right 50% of the time		
+        }
+        else
+            return devices[0];
+    }
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Runtime.InteropServices;
 using System;
+using UnityEngine.UI;
 
 public class WindowsControl : MonoBehaviour {
 
@@ -10,6 +10,7 @@ public class WindowsControl : MonoBehaviour {
     private static extern bool SetWindowPos(IntPtr hwnd, int hWndInsertAfter, int x, int Y, int cx, int cy, int wFlags);
     [DllImport("user32.dll", EntryPoint = "FindWindow")]
     public static extern IntPtr FindWindow(System.String className, System.String windowName);
+    public GameObject PanelMain;
 
     public static void SetPosition(string AppName, int x, int y, int resX = 0, int resY = 0)
     {
@@ -18,7 +19,7 @@ public class WindowsControl : MonoBehaviour {
 #endif
 
     public static void UpdateWindows(string AppName){
-        //SetPosition(AppName,AltaGlobal.Settings.WindowsPositionX,AltaGlobal.Settings.WindowsPositionY);
+        SetPosition(AppName,AMGlobal.Settings.WindowsPositionX, AMGlobal.Settings.WindowsPositionY);
     }
 
     private float TimeCount;
@@ -30,6 +31,11 @@ public class WindowsControl : MonoBehaviour {
             TimeCount = 0;
             AMGlobal.Settings.Load();
             WindowsControl.UpdateWindows(AMGlobal.Settings.productName);
+            PanelMain.GetComponent<RectTransform>().localScale = new Vector3(AMGlobal.Settings.PanelContentScaleX, AMGlobal.Settings.PanelContentScaleY, AMGlobal.Settings.PanelContentScaleZ);
+            if(AMGlobal.Settings.PanelContentWith > 0 && AMGlobal.Settings.PanelContentHeight > 0)
+            {
+                PanelMain.GetComponent<RectTransform>().sizeDelta = new Vector2(AMGlobal.Settings.PanelContentWith, AMGlobal.Settings.PanelContentHeight);
+            }
         }
     }
 }
