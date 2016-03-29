@@ -2,6 +2,8 @@
 using System.Collections;
 using System.IO;
 using UnityEngine.UI;
+using System;
+using System.Text;
 
 public static class AMStaticFunc {
 
@@ -41,7 +43,7 @@ public static class AMStaticFunc {
     public static string SaveFilePng(Texture2D tx, string name)
     {
         byte[] bytes = tx.EncodeToPNG();
-        Object.Destroy(tx);
+        UnityEngine.Object.Destroy(tx);
         File.WriteAllBytes(name, bytes);
         return name;
     }
@@ -92,6 +94,18 @@ public static class AMStaticFunc {
        
     }
 
+    public static IEnumerator downloadImg(this Sprite ps,string url)
+    {
+        Texture2D texture = new Texture2D(1, 1);
+        WWW www = new WWW(url);
+        yield return www;
+        www.LoadImageIntoTexture(texture);
+
+        Sprite image = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+        ps = image;
+        Debug.Log("Xong ko sao");
+    }
+
 
     //SerialPort
     public static string guessPortNameWindows()
@@ -105,4 +119,62 @@ public static class AMStaticFunc {
         else
             return devices[0];
     }
+
+    //Get list info player type form 
+    public static string getListPlayerType()
+    {
+        string Str = "";
+        foreach (AMGlobal.PlayerType value in Enum.GetValues(typeof(AMGlobal.PlayerType)))
+        {
+            Str += value+"|";
+        }
+        return Str;
+    }
+
+    //Support Get data
+    //Get question form id
+
+    //Get data from list data every
+    public static T DataFromID<T>(T[] data,int id)
+    {
+        foreach (T item in data)
+        {
+            if((item as Question).id == id){
+                return item;
+            }
+        }
+        return default(T);
+    }
+    // Get dât from so thu tu
+    public static T DataFromNumbers<T>(T[] data, int numbers)
+    {
+        foreach (T item in data)
+        {
+            if ((item as Question).numbers == numbers)
+            {
+                return item;
+            }
+        }
+        return default(T);
+    }
+
+    public static T DataFromNumbersAnswer<T>(T[] data, int numbers)
+    {
+        foreach (T item in data)
+        {
+            if ((item as Answer).numbers == numbers)
+            {
+                return item;
+            }
+        }
+        return default(T);
+    }
+
+    //AM Color function
+    public static Color Color(float r, float g, float b, float a)
+    {
+        return new Color(r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f);
+    }
+
+    
 }

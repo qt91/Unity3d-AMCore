@@ -8,17 +8,26 @@ public static class AMGlobal
     public static float ScaleMovementX = 1;
     public static float ScaleMovementY = 1;
 
-    public static bool isGrab;
+    //For proejct
 
-    //List Image
-    //public static List<Texture> ListTextureTakePhoto = new List<Texture>();
-    //public static List<Sprite> ListSpriteTakePhoto = new List<Sprite>();
-    public static List<string> ListStringTakePhoto;
-    public static string UrlSave;
-    public static string UrlSaveGif;
+    public static int KindIDCurrent;
+    public static int QuestionNumbersCurrent = 1;
+    public static QuestionPackage questionPackage;
+    public static Question QuestionShow;
+    public static int NumbersWin;
+    public static int TimeCount;
+    public static int CountTeam = 0;
+    public static bool isReady = false;
+    
+
     public static void Reset()
     {
-        AMGlobal.ListStringTakePhoto = new List<string>();
-        AMGlobal.isGrab = false;
+        TimeCount = AMGlobal.Settings.TimeCount;
+        NumbersWin = 0;
+        QuestionNumbersCurrent = 1;
+        KindIDCurrent = 0;
     }
+
+    public enum PlayerType { Ipad, LED };
+    public static NetworkPlayer[] listPlayer;
 }

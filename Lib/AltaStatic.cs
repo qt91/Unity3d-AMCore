@@ -113,23 +113,6 @@ public static class AltaStatic
     }
 
 
-    //AM Color function
-    public static Color AMColor(float r, float g, float b, float a){
-        return new Color(r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f);
-    }
-
-    //Stop All Audio
-    public static void StopAllAudio()
-    {
-        GameObject Audi = GameObject.Find("AMAudio").gameObject;
-        AudioSource[] listAudio = Audi.GetComponents<AudioSource>();
-        foreach (AudioSource au in listAudio)
-        {
-            if (au.isPlaying)
-            {
-                au.Stop();
-            }
-        }
-    }
+    
 
 }

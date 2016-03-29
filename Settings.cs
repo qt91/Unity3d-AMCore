@@ -12,7 +12,7 @@ public class Settings
     public int SocketPort = 339;
 
     //Socket Server
-    public int SocketPortServer = 1812;
+    public int SocketPortServer = 6789;
 
     public bool WindowsReadTime = true;//State ReadTime if equal "true" auto loop reload follow ReadTimeLoop
     public float WindowsReadTimeLoop = 1f;//Time loop reload setting file
@@ -28,9 +28,25 @@ public class Settings
     public float PanelContentHeight = 200;//height
 
     //Registry for this Project
-    public string UrlVideoYes = "Videos/Demo1.mov";//Link video dong y
-    public string UrlVideoNo = "Videos/Demo2.mov";//Link video khong dong y
-    public string UrlVideoLogo = "Videos/Demo4.mov";//Link video default
+    public string UrlServerData = "http://develop.altamedia.vn/qt/quiz/data/";
+    //http://develop.altamedia.vn/ht/venus/api/getCategories
+    //http://develop.altamedia.vn/ht/APIDOC/mock/38fqB65WVGrRxlOZ/global/api-getcategories
+    public string UrlKinds = "http://develop.altamedia.vn/ht/venus/api/getCategories";
+    //http://develop.altamedia.vn/ht/venus/api/getQuestions?cat_id={0}
+    //http://develop.altamedia.vn/ht/APIDOC/mock/38fqB65WVGrRxlOZ/global/api-getquestions
+    public string UrlPackage = "http://develop.altamedia.vn/ht/venus/api/getQuestions?cat_id={0}";
+    //http://develop.altamedia.vn/ht/venus/api/getScores?limit={0}
+    //http://develop.altamedia.vn/ht/APIDOC/mock/38fqB65WVGrRxlOZ/global/api-getscores
+    public string UrlTop = "http://develop.altamedia.vn/ht/venus/api/getScores?limit={0}";
+    //Post Score
+    //http://develop.altamedia.vn/ht/venus/api/postScores
+    //http://develop.altamedia.vn/ht/APIDOC/mock/38fqB65WVGrRxlOZ/global/api-postscores
+    public string UrlPostScore = "http://develop.altamedia.vn/ht/venus/api/postScores";
+
+    //Client API
+    public string UrlApiClient = "http://develop.altamedia.vn/ht/venus/api/getQuestionsByCode?code={0}";
+    public int TimeCount = 59;
+    public int TimeNext = 1;
 
 
 
