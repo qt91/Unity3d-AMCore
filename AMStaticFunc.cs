@@ -135,40 +135,40 @@ public static class AMStaticFunc {
     //Get question form id
 
     //Get data from list data every
-    public static T DataFromID<T>(T[] data,int id)
-    {
-        foreach (T item in data)
-        {
-            if((item as Question).id == id){
-                return item;
-            }
-        }
-        return default(T);
-    }
-    // Get dât from so thu tu
-    public static T DataFromNumbers<T>(T[] data, int numbers)
-    {
-        foreach (T item in data)
-        {
-            if ((item as Question).numbers == numbers)
-            {
-                return item;
-            }
-        }
-        return default(T);
-    }
+    //public static T DataFromID<T>(T[] data,int id)
+    //{
+    //    foreach (T item in data)
+    //    {
+    //        if((item as Question).id == id){
+    //            return item;
+    //        }
+    //    }
+    //    return default(T);
+    //}
+    //// Get dât from so thu tu
+    //public static T DataFromNumbers<T>(T[] data, int numbers)
+    //{
+    //    foreach (T item in data)
+    //    {
+    //        if ((item as Question).numbers == numbers)
+    //        {
+    //            return item;
+    //        }
+    //    }
+    //    return default(T);
+    //}
 
-    public static T DataFromNumbersAnswer<T>(T[] data, int numbers)
-    {
-        foreach (T item in data)
-        {
-            if ((item as Answer).numbers == numbers)
-            {
-                return item;
-            }
-        }
-        return default(T);
-    }
+    //public static T DataFromNumbersAnswer<T>(T[] data, int numbers)
+    //{
+    //    foreach (T item in data)
+    //    {
+    //        if ((item as Answer).numbers == numbers)
+    //        {
+    //            return item;
+    //        }
+    //    }
+    //    return default(T);
+    //}
 
     //AM Color function
     public static Color Color(float r, float g, float b, float a)
@@ -176,5 +176,14 @@ public static class AMStaticFunc {
         return new Color(r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f);
     }
 
-    
+    // Capture 
+    public static string ScreenShotName(int width, int height)
+    {
+        return string.Format("{0}/screenshots/screen_{1}x{2}_{3}.png",
+                             Application.streamingAssetsPath,
+                             width, height,
+                             System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
+    }
+
+
 }

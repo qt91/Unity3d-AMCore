@@ -28,25 +28,32 @@ public class Settings
     public float PanelContentHeight = 200;//height
 
     //Registry for this Project
-    public string UrlServerData = "http://develop.altamedia.vn/qt/quiz/data/";
-    //http://develop.altamedia.vn/ht/venus/api/getCategories
-    //http://develop.altamedia.vn/ht/APIDOC/mock/38fqB65WVGrRxlOZ/global/api-getcategories
-    public string UrlKinds = "http://develop.altamedia.vn/ht/venus/api/getCategories";
-    //http://develop.altamedia.vn/ht/venus/api/getQuestions?cat_id={0}
-    //http://develop.altamedia.vn/ht/APIDOC/mock/38fqB65WVGrRxlOZ/global/api-getquestions
-    public string UrlPackage = "http://develop.altamedia.vn/ht/venus/api/getQuestions?cat_id={0}";
-    //http://develop.altamedia.vn/ht/venus/api/getScores?limit={0}
-    //http://develop.altamedia.vn/ht/APIDOC/mock/38fqB65WVGrRxlOZ/global/api-getscores
-    public string UrlTop = "http://develop.altamedia.vn/ht/venus/api/getScores?limit={0}";
-    //Post Score
-    //http://develop.altamedia.vn/ht/venus/api/postScores
-    //http://develop.altamedia.vn/ht/APIDOC/mock/38fqB65WVGrRxlOZ/global/api-postscores
-    public string UrlPostScore = "http://develop.altamedia.vn/ht/venus/api/postScores";
+    public int percentSymptom = 50;//Phần trăm triệu chứng xuất hiện
+    public int percentSymptomWhite = 50;//Phần trăm triệu chứng xuất hiện ( Trieu chứng dùng Balm Trắng )
+    public int percentSymptomWhite1 = 50;//Trieu chung trang thu nhat
+    public int percentSymptomWhite2 = 50;//Trieu chung trang thu hai
+    public int percentSymptomBlack = 50;//Phần trăm triệu chứng xuất hiện ( Trieu chứng dùng Balm Đen )
+    public int percentSymptomBlack1 = 50;//Trieu chung den thu nhat
+    public int percentSymptomBlack2 = 50;//Trieu chung den thu hai
 
-    //Client API
-    public string UrlApiClient = "http://develop.altamedia.vn/ht/venus/api/getQuestionsByCode?code={0}";
-    public int TimeCount = 59;
-    public int TimeNext = 1;
+    public float SpeedMax = 2;//Tốc độ tối đa
+    public float SpeedMin = 0;//Tốc độ tối thiểu
+    public int TimeCountDownStart = 3;//Countdown Start Game
+    public int TimeCountStart = 60;//Thời gian thời gian bắt đâu
+    public int TimeCountEnd = 0;//Thơi gian kết thúc
+
+    
+
+    public float TimeNextSenceF5 = 5;//Thoi gian next scene report
+    public float TimeViewImageEndGame = 10;//Thoi gian xem anh va bat dau lai game
+
+    public float TimeUp = 0.06f;//Toc do tang dan
+    public float TimeDown = 0.02f;//Toc do giam dan khi ko dap
+    public float SppedMove = 0.7f;//Toc do cua
+
+    public float DistanceUnit = 1;//Don vi de goi ham lam to hinh country qua tung step
+    public float ScaleUnit = 0.02f;//Don vi tang scale sau moi lan DistanceUnit ( Nho so nay lai nghia la khoang cach cac quoc gia se tang len
+
 
 
 
