@@ -1,0 +1,140 @@
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+using UnityEngine.SceneManagement;
+
+public class AMClient : MonoBehaviour {
+    public static AMClient Static;
+    
+    public InputField inputFieldIP;
+    public InputField inputFieldPort;
+    public Text TextDebug;
+    public int timeReconnect = 1;
+
+    //get data form file or from input of UI
+    public bool dataFromFile = true;
+    public bool autoReconnect = true;
+    public bool connectStart = true;
+    //
+    public string clientName = "Client";
+    public bool debugConsole = false;
+
+    private NetworkView networkView;
+    private bool flagConnect = false;
+    private float CountReconnect = 3;
+    private float Count = 0;
+    private string ipValue;
+    private int portValue;
+    private string nameValue;
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+        networkView = gameObject.GetComponent<NetworkView>();
+        Static = this;
+    }
+    void Start () {
+        
+        if (dataFromFile)
+        {
+            ipValue = AMGlobal.Settings.socketClientIP;
+            portValue = AMGlobal.Settings.socketClientPort;
+            nameValue = AMGlobal.Settings.productName;
+        }
+        else
+        {
+            ipValue = inputFieldIP.text;
+            portValue = int.Parse(inputFieldPort.text);
+        }
+
+        if (connectStart)
+        {
+            Invoke("ClickConnectServer", 1);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //Registry Shift + C => Reconnect
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.C))
+        {
+            autoReconnect = true;
+            ClickConnectServer();
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.D))
+        {
+            ClickDisconnect();
+            autoReconnect = false;
+        }
+
+        //Count time and reconnect if is disconnect
+        Count += Time.deltaTime;
+        if (Count > timeReconnect && flagConnect == false && autoReconnect)
+        {
+            Count = 0;
+            ClickConnectServer();
+        }
+    }
+
+    public void ClickConnectServer()
+    {
+        if(flagConnect == false)
+        {
+            if (debugConsole)
+            {
+                Debug.Log("Connecting server with info " + ipValue + ":" + portValue);
+            }
+            Network.Connect(ipValue, portValue);
+        }
+    }
+
+    public void ClickDisconnect()
+    {
+        Network.Disconnect();
+    }
+
+    void OnConnectedToServer()
+    {
+        //TextDebug.text = "Connected to server";
+        //Send to server reginstry client
+        //SendServer(nameValue);
+        if (debugConsole)
+        {
+            Debug.Log("Connected server with info " + ipValue + ":" + portValue);
+        }
+        SendServer("Client"+ AMGlobal.Settings.ClientID);
+        flagConnect = true;
+    }
+
+    void OnDisconnectedFromServer(NetworkDisconnection info)
+    {
+        if (debugConsole)
+        {
+            Debug.Log("Disconted with server with info " + ipValue + ":" + portValue);
+        }
+        flagConnect = false;
+    }
+
+    //Send to server
+    public void SendServer(string str)
+    {
+        //Debug.Log(str);
+        networkView.RPC("OnReceiverString", RPCMode.Server, str);// + InputFieldRandom.text
+    }
+
+    //For server mobile
+    [RPC]
+    public void OnReceiverString(string msg, NetworkMessageInfo player)
+    {
+        Debug.Log(msg);
+        
+
+    }
+
+    [RPC]
+    public void OnReceicerObject(NetworkMessageInfo info, object obj)
+    {
+
+    }
+}
