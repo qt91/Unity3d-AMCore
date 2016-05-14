@@ -1,0 +1,74 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class PHPRequest : MonoBehaviour {
+	// Delegates
+	public delegate void onRequestCompleted(string response);
+	public delegate void onRequestError(string error);
+	// Events
+	public event onRequestCompleted RequestCompleted;
+	public event onRequestError RequestError;
+	
+	// Private variables...
+	private WWWForm phpForm;
+	
+	
+	public void startAnsyncRequest(string url, Dictionary<string, string> formVariables){
+		StartCoroutine(asyncRequest(url, formVariables));
+	}
+	
+	public string startRequest(string url, Dictionary<string, string> formVariables){
+		phpForm = new WWWForm();
+		// Traverse Variables dictionary
+		List<string> keyList = new List<string>(formVariables.Keys);
+		for (int i = 0; i < keyList.Count; i++)
+		{
+			if(formVariables[keyList[i]] != ""){
+				// Add field from dictionary
+				phpForm.AddField(keyList[i], formVariables[keyList[i]]);	
+			}
+		}
+		// Perform request (Program will freeze)...
+		WWW download = new WWW( url, phpForm );
+		if(download.error != null) {
+        	return download.error;
+	    } else {
+			return download.text;
+	    }
+	}
+	
+	
+	public IEnumerator asyncRequest (string phpUrl, Dictionary<string, string> formVariables) {
+		phpForm = new WWWForm();
+		// Adding variables...
+	
+		List<string> keyList = new List<string>(formVariables.Keys);
+		for (int i = 0; i < keyList.Count; i++)
+		{
+			if(formVariables[keyList[i]] != ""){
+				phpForm.AddField(keyList[i], formVariables[keyList[i]]);	
+			}
+		}
+
+		// Creating a download object
+		 WWW download = new WWW( phpUrl, phpForm );
+		// I need to wait until the download/phprequest is done...
+		yield return download;
+		// Analizing data..
+		if(download.error != null) {
+        	if(RequestError != null){
+				// Event Handler defined
+				RequestError(download.error);
+			}else{
+				Debug.Log("Request Error: "+download.error);
+			}
+	    } else {
+			if(RequestCompleted != null){
+	        	RequestCompleted(download.text);
+			}else{
+				Debug.Log("Request completed: "+download.text);
+			}
+	    }
+	}
+}
