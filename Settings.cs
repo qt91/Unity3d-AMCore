@@ -8,8 +8,12 @@ public class Settings
     public string productName = "AMBuocNhayHoanVuNhi";
 
     //Socket Client
-    public string SocketIP = "127.0.0.1";
-    public int SocketPort = 339;
+    public string SocketIP = "192.168.10.65";//
+    public int SocketPort = 6789;
+    public string ClientGroup = "";//Group name ( Multip client to a group )
+    public int ClientID = 1;// Client ID
+    public string ClientName = "LCD";//Client name
+    public bool autoConnect = true;
 
     //Socket Server
     public int SocketPortServer = 6789;
@@ -27,21 +31,6 @@ public class Settings
     public float PanelContentWith = 1280;//width
     public float PanelContentHeight = 200;//height
 
-    //Registry for this Project
-    public int percentSymptom = 50;//Phần trăm triệu chứng xuất hiện
-    public int percentSymptomWhite = 50;//Phần trăm triệu chứng xuất hiện ( Trieu chứng dùng Balm Trắng )
-    public int percentSymptomWhite1 = 50;//Trieu chung trang thu nhat
-    public int percentSymptomWhite2 = 50;//Trieu chung trang thu hai
-    public int percentSymptomBlack = 50;//Phần trăm triệu chứng xuất hiện ( Trieu chứng dùng Balm Đen )
-    public int percentSymptomBlack1 = 50;//Trieu chung den thu nhat
-    public int percentSymptomBlack2 = 50;//Trieu chung den thu hai
-
-    public float SpeedMax = 2;//Tốc độ tối đa
-    public float SpeedMin = 0;//Tốc độ tối thiểu
-    public int TimeCountDownStart = 3;//Countdown Start Game
-    public int TimeCountStart = 60;//Thời gian thời gian bắt đâu
-    public int TimeCountEnd = 0;//Thơi gian kết thúc
-
     
 
     public float TimeNextSenceF5 = 5;//Thoi gian next scene report
@@ -53,6 +42,11 @@ public class Settings
 
     public float DistanceUnit = 1;//Don vi de goi ham lam to hinh country qua tung step
     public float ScaleUnit = 0.02f;//Don vi tang scale sau moi lan DistanceUnit ( Nho so nay lai nghia la khoang cach cac quoc gia se tang len
+
+    public string colorDefault = "0,216,255";
+    public string colorSelect = "255,132,0";
+    public string colorFalse = "255,0,0";
+    public string AppPath = @"D:\Project\GameShow\MotPhutMotTramTrieu\Update110716\Code\UserClientLCD\Build\LCD\UserClientLCD_Data\StreamingAssets\Touch3x4\ClientLCD.exe";
 
 
 

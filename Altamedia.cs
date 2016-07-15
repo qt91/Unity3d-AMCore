@@ -14,7 +14,7 @@ public class Altamedia : MonoBehaviour
     }
 	
 	void Start () {
-        SceneManager.LoadScene(NextScene);
+        //SceneManager.LoadScene(NextScene);
       
 	}
 	
