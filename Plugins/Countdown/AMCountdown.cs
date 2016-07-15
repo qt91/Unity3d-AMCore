@@ -96,16 +96,7 @@ public class AMCountdown : MonoBehaviour
         if (destroy && isComplete)
         {
             //For project
-            if (Application.loadedLevelName == "Capture")
-            {
-                AMCapture.Static.Capture();
-            }
-
-            if (Application.loadedLevelName == "MainGame")
-            {
-                AMTimeCount.Static.StartCountTime();
-                PlayerControl.Static.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            }
+            
 
 
             Destroy(gameObject);

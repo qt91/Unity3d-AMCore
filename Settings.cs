@@ -31,8 +31,8 @@ public class Settings
     public float PanelContentWith = 1280;//width
     public float PanelContentHeight = 200;//height
 
-    
 
+    public float TimeCountDownStart = 3;//Time count start game
     public float TimeNextSenceF5 = 5;//Thoi gian next scene report
     public float TimeViewImageEndGame = 10;//Thoi gian xem anh va bat dau lai game
 

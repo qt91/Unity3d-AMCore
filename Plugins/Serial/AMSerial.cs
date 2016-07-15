@@ -2,7 +2,6 @@
 using System.Collections;
 using System.IO.Ports;
 using System;
-using UnityStandardAssets.Characters.ThirdPerson;
 
 public class AMSerial : MonoBehaviour {
 
