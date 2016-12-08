@@ -1,5 +1,0 @@
-Using
-
-Add file to scene "Reload" and setting file info 
-Call anywhere to send data to server
-    AMClient.Static.SendServer("<message>");

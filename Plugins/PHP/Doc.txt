@@ -1,9 +1,0 @@
-Using
-
-PHPRequest Request = new PHPRequest();//Create new object
-//Registry data input
-System.Collections.Generic.Dictionary<string, string> data = new System.Collections.Generic.Dictionary<string, string>();
-//add data with key and value
-data.Add("id", AMGlobal.CurrentRow1.id.ToString());
-//Call function with path and data 
-StartCoroutine(Request.asyncRequest(AMGlobal.Settings.urlComplete, data));
