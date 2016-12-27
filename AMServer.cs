@@ -77,7 +77,8 @@ public class AMServer : AltaControllerInterFace
         if (msg.ToUpper() == "Start".ToUpper())
         {
             SendClient("Play", AMGlobal.MobileClient);
-            SceneManager.LoadScene("MainGame");
+            //SceneManager.LoadScene("MainGame");
+            Application.LoadLevel("MainGame");
         }
 
         //Reset Game

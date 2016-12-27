@@ -19,7 +19,7 @@ public class WindowsControl : MonoBehaviour {
 #endif
 
     public static void UpdateWindows(string AppName){
-        SetPosition(AppName,AMGlobal.Settings.WindowsPositionX, AMGlobal.Settings.WindowsPositionY);
+        SetPosition(AppName,(int)AMGlobal.Settings.WindowsPositionX, (int)AMGlobal.Settings.WindowsPositionY);
     }
 
     private float TimeCount;

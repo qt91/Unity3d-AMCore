@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System;
 using UnityEngine.SceneManagement;
 
+// Count time play game
 public class AMTimeCount : MonoBehaviour {
 
     public static AMTimeCount Static;
@@ -11,14 +12,15 @@ public class AMTimeCount : MonoBehaviour {
     public Text OutputText;
     public string CountFormat = "00";
 
-    [Header("For General")]
+    [Header("Cấu hình thời gian")]
     public float CountStart = 3;
     public int CountEnd = 0;
 
-    [Header("Time count in step, seconds")]
-    public float TimeStep = 1;
+    [Header("Thời gian đếm, mặc định 1 giây")]
+    public float TimeStep = 1;// Thơi gian đmế
 
-    public float SetupOne = 4;
+    [Header("Chuyển đổi sang dạng phút")]
+    public bool convertToSecound = true;
 
     private bool CountDirection = true;//Count Down
     private float TimeCount = 0;
@@ -26,6 +28,9 @@ public class AMTimeCount : MonoBehaviour {
     public bool StartOnPlay = false;
 
     private bool isComplete;
+
+    public delegate void CompleteAction();
+    public static event CompleteAction OnComplete;
 
 
     void Awake()
@@ -36,6 +41,16 @@ public class AMTimeCount : MonoBehaviour {
     void Start () {
         //CountStart = AMGlobal.Settings.TimeCountStart;
         OutputText.text = CountStart.ToString(CountFormat);
+
+        if (convertToSecound)
+        {
+            OutputText.text = AMTimeHelper.ConvertTimeSecoundToMinute(CountStart);
+        }
+        else
+        {
+            OutputText.text = CountStart.ToString(CountFormat);
+        }
+
         if (CountStart < CountEnd)//Count up
         {
             CountDirection = false;
@@ -70,6 +85,11 @@ public class AMTimeCount : MonoBehaviour {
 
                     if (CountStart < CountEnd)
                     {
+                        if(OnComplete != null)
+                        {
+                            OnComplete();
+                        }
+                        
                         isComplete = true;
                     }
                 }
@@ -79,15 +99,22 @@ public class AMTimeCount : MonoBehaviour {
                     CountStart++;
                     if (CountStart > CountEnd)
                     {
+                        if (OnComplete != null)
+                        {
+                            OnComplete();
+                        }
                         isComplete = true;
                     }
                 }
-                OutputText.text = CountStart.ToString(CountFormat);
-            }
 
-            if (isComplete)
-            {
-                SceneManager.LoadScene("Report");
+                if (convertToSecound)
+                {
+                    OutputText.text = AMTimeHelper.ConvertTimeSecoundToMinute(CountStart);
+                }
+                else
+                {
+                    OutputText.text = CountStart.ToString(CountFormat);
+                }
             }
 
             

@@ -37,7 +37,7 @@ public class AMCountdown : MonoBehaviour
 
     void Start()
     {
-        CountStart = AMGlobal.Settings.TimeCountDownStart;
+        //CountStart = AMGlobal.Settings.TimeCountDownStart;
         if (CountStart < CountEnd)//Count up
         {
             CountDirection = false;
