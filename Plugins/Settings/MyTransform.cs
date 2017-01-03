@@ -27,7 +27,7 @@ public class MyTransform : MonoBehaviour {
             dataTransform = dataTransform.load();
             if (dataTransform.autoUpdate)
             {
-                Debug.Log("co vao ko");
+                //Debug.Log("co vao ko");
                 gameObject.transform.position = dataTransform.getPosition();
                 gameObject.transform.rotation = dataTransform.getRotation();
                 gameObject.transform.localScale = dataTransform.getPScale();
